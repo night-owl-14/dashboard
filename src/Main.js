@@ -1,8 +1,8 @@
 import React from 'react';
-import Login from 'src/containers/Login/Login';
+import Index from 'src/containers/Login';
 
 export default function Main() {
   return (
-      <Login/>
+      <Index/>
   );
 }
