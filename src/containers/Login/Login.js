@@ -14,7 +14,7 @@ import {
   ThemeProvider
 } from "atomize";
 
-import "./App.css";
+import "./Login.css";
 
 const theme = {
   ...DefaultTheme,
@@ -24,7 +24,7 @@ const theme = {
   }
 };
 
-class App extends React.Component {
+class Login extends React.Component {
 
   state = {
     isPasswordVisible: false,
@@ -140,4 +140,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Login;
