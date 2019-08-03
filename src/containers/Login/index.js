@@ -15,6 +15,7 @@ import {
 } from "atomize";
 
 import "./Login.css";
+import {getUserAuth, validate} from "./helper";
 
 const theme = {
   ...DefaultTheme,
@@ -31,6 +32,11 @@ class Login extends React.Component {
     isRememberMeChecked: false
   };
 
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+  }
+
   togglePasswordVisibility = () => {
     this.setState({isPasswordVisible: !this.state.isPasswordVisible});
   };
@@ -39,8 +45,21 @@ class Login extends React.Component {
     this.setState({isRememberMeChecked: !this.state.isRememberMeChecked});
   };
 
-  login = () => {
+  login(event) {
+    event.preventDefault();
 
+    const account = {
+      email: event.target.email.value,
+      password: event.target.password.value
+    };
+
+    const validation = validate(account);
+
+    if (validation.isValid) {
+      getUserAuth(account);
+    } else {
+      alert(validation.message);
+    }
   };
 
   render() {
@@ -63,8 +82,9 @@ class Login extends React.Component {
             Sign in
           </Text>
           <Div d="flex" flexDir="column" align="center" w="50%" m="0 auto">
-            <form className="form-signin" onSubmit={this.login()} style={{width: "100%"}}>
+            <form className="form-signin" onSubmit={this.login} style={{width: "100%"}}>
               <Input
+                  name="email"
                   placeholder="Email"
                   m={{t: "1.5rem"}}
                   suffix={
@@ -86,6 +106,7 @@ class Login extends React.Component {
               />
               <Input
                   m={{t: "1rem"}}
+                  name="password"
                   placeholder="Password"
                   type={isPasswordVisible ? "text" : "password"}
                   suffix={
