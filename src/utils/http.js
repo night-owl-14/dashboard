@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function post(url, payload = {}, headers = {}) {
+export const post = (url, payload = {}, headers = {}) => {
   return axios.post(url, payload, headers)
       .then(({data}) => data)
       .then(response => ({
@@ -8,7 +8,7 @@ export function post(url, payload = {}, headers = {}) {
         success: response.data.state === 'SUCCESS',
       }))
       .catch();
-}
+};
 
 export async function get(url) {
   return await axios.get(url)
@@ -16,7 +16,7 @@ export async function get(url) {
       .then(response => {
         return ({
           ...response.data,
-          success: response.data.state == 'SUCCESS',
+          success: response.data.state === 'SUCCESS',
         });
       })
       .catch(err => {
