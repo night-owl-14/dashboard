@@ -4,7 +4,6 @@ import {
   Button,
   Checkbox,
   Container,
-  DefaultTheme,
   Div,
   Icon,
   Input,
@@ -17,25 +16,17 @@ import {
 import "./Login.css";
 import {getUserAuth, validate} from "./helper";
 
-const theme = {
-  ...DefaultTheme,
-  fontFamily: {
-    ...DefaultTheme.fontFamily,
-    primary: `'Lato', sans-serif;`,
-  }
-};
-
 class Login extends React.Component {
-
-  state = {
-    isPasswordVisible: false,
-    isRememberMeChecked: false
-  };
 
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
   }
+
+  state = {
+    isPasswordVisible: false,
+    isRememberMeChecked: false
+  };
 
   togglePasswordVisibility = () => {
     this.setState({isPasswordVisible: !this.state.isPasswordVisible});
